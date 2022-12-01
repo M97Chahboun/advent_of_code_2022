@@ -11,15 +11,35 @@ class Day1 {
     return caloriesForEveryElf;
   }
 
-  static solve() {
+  static void solve() {
     List<int> sumCaloriesForEveryElf = caloriesForEveryElf.map<int>((calories) {
       List<int> caloriesOfElf =
           calories.split("\n").map<int>((e) => int.parse(e.trim())).toList();
       return caloriesOfElf.sum;
     }).toList();
+    part1(sumCaloriesForEveryElf);
+    part2(sumCaloriesForEveryElf);
+  }
+
+  static void part1(List<int> sumCaloriesForEveryElf) {
     int mostCalories = sumCaloriesForEveryElf
         .reduce((current, next) => current > next ? current : next);
     int elfHaveMostCalories = sumCaloriesForEveryElf.indexOf(mostCalories) + 1;
-    log("Elf $elfHaveMostCalories have most Calories : $mostCalories");
+    log("Part1:\nElf $elfHaveMostCalories have most Calories : $mostCalories");
+  }
+
+  static part2(List<int> sumCaloriesForEveryElf) {
+    log("Part2:");
+    int totalTopThreeElves = 0;
+    for (var i = 0; i < 3; i++) {
+      int mostCalories = sumCaloriesForEveryElf
+          .reduce((current, next) => current > next ? current : next);
+      int elfHaveMostCalories =
+          sumCaloriesForEveryElf.indexOf(mostCalories) + 1;
+      sumCaloriesForEveryElf.remove(mostCalories);
+      log("Elf $elfHaveMostCalories have most Calories : $mostCalories");
+      totalTopThreeElves += mostCalories;
+    }
+    log("Total of Top Three Elves : $totalTopThreeElves");
   }
 }
