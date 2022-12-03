@@ -1,10 +1,12 @@
 import 'package:advent_of_code_2022/data.dart';
+import 'package:collection/collection.dart';
 
 class Day2 {
   static void solve() {
     List<String> rockPaperScissors =
         PrepareData.getData(path: "lib/day_2/day_2.txt", pattern: "\n");
     part1(rockPaperScissors);
+    part2(rockPaperScissors);
   }
 
   static List<String> wonCases = ["A Y", "B Z", "C X"];
@@ -32,6 +34,39 @@ class Day2 {
 
       // Points based on how you play
       score += rockPaperScissorsScores[you]!;
+    }
+    print("My total score : $score");
+  }
+
+  static part2(List<String> rockPaperScissors) {
+    print("Part 2:");
+    List<String> lostCases = ["A Z", "B X", "C Y"];
+    int score = 0;
+    Map<String, int> roundStrategy = {"X": 0, "Y": 3, "Z": 6};
+    for (String round in rockPaperScissors) {
+      String opponent = round.split(" ")[0];
+      String you = round.split(" ")[1];
+
+      switch (you) {
+        case "X":
+          String? chooseForLost =
+              lostCases.firstWhereOrNull((e) => e.contains(opponent));
+          String chooseForLostTarget = chooseForLost!.split(" ")[1];
+          score += rockPaperScissorsScores[chooseForLostTarget]!;
+          break;
+        case "Y":
+          score += rockPaperScissorsScores[here[opponent]]!;
+          break;
+        case "Z":
+          String? chooseForWin =
+              wonCases.firstWhereOrNull((e) => e.contains(opponent));
+          String chooseForWinTarget = chooseForWin!.split(" ")[1];
+          score += rockPaperScissorsScores[chooseForWinTarget]!;
+          break;
+        default:
+      }
+
+      score += roundStrategy[you]!;
     }
     print("My total score : $score");
   }
