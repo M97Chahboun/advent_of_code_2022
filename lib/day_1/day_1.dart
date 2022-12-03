@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:advent_of_code_2022/data.dart';
 import 'package:collection/collection.dart';
 
@@ -20,11 +18,12 @@ class Day1 {
     int mostCalories = sumCaloriesForEveryElf
         .reduce((current, next) => current > next ? current : next);
     int elfHaveMostCalories = sumCaloriesForEveryElf.indexOf(mostCalories) + 1;
-    log("Part1:\nElf $elfHaveMostCalories have most Calories : $mostCalories");
+    print(
+        "Part1:\nElf $elfHaveMostCalories have most Calories : $mostCalories");
   }
 
   static part2(List<int> sumCaloriesForEveryElf) {
-    log("Part2:");
+    print("Part2:");
     int totalTopThreeElves = 0;
     for (var i = 0; i < 3; i++) {
       int mostCalories = sumCaloriesForEveryElf
@@ -32,9 +31,9 @@ class Day1 {
       int elfHaveMostCalories =
           sumCaloriesForEveryElf.indexOf(mostCalories) + 1;
       sumCaloriesForEveryElf.remove(mostCalories);
-      log("Elf $elfHaveMostCalories have most Calories : $mostCalories");
+      print("Elf $elfHaveMostCalories have most Calories : $mostCalories");
       totalTopThreeElves += mostCalories;
     }
-    log("Total of Top Three Elves : $totalTopThreeElves");
+    print("Total of Top Three Elves : $totalTopThreeElves");
   }
 }
