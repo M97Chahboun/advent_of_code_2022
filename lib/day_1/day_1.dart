@@ -1,17 +1,12 @@
 import 'dart:developer';
-import 'dart:io';
 
+import 'package:advent_of_code_2022/data.dart';
 import 'package:collection/collection.dart';
 
 class Day1 {
-  static List get caloriesForEveryElf {
-    File file = File("lib/day_1/day_1.txt");
-    String caloriesData = file.readAsStringSync();
-    List caloriesForEveryElf = caloriesData.split("\n\n");
-    return caloriesForEveryElf;
-  }
-
   static void solve() {
+    List<dynamic> caloriesForEveryElf =
+        PrepareData.getData(path: "lib/day_1/day_1.txt", pattern: "\n\n");
     List<int> sumCaloriesForEveryElf = caloriesForEveryElf.map<int>((calories) {
       List<int> caloriesOfElf =
           calories.split("\n").map<int>((e) => int.parse(e.trim())).toList();
