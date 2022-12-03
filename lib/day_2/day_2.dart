@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 
 class Day2 {
   static void solve() {
+    print("--- Day 2: Rock Paper Scissors ---");
     List<String> rockPaperScissors =
         PrepareData.getData(path: "lib/day_2/day_2.txt", pattern: "\n");
     part1(rockPaperScissors);

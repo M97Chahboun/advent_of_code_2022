@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 
 class Day1 {
   static void solve() {
+    print("--- Day 1: Calorie Counting ---");
     List<dynamic> caloriesForEveryElf =
         PrepareData.getData(path: "lib/day_1/day_1.txt", pattern: "\n\n");
     List<int> sumCaloriesForEveryElf = caloriesForEveryElf.map<int>((calories) {
