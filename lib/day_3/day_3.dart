@@ -26,19 +26,35 @@ class Day3 {
       String part2 = id.substring(id.length ~/ 2);
       List<String> result = part1.split("");
       result.removeWhere((e) => !part2.contains(e));
-      String comparLetter = result.toSet().first;
-      if (alphabetsUpperCase.contains(comparLetter)) {
-        sum += alphabetsUpperCase.indexOf(comparLetter) +
-            alphabetsUpperCase.length +
-            1;
-      } else {
-        sum += (alphabetsUpperCase.indexOf(comparLetter.toUpperCase()) + 1);
-      }
+      sum += calculateScore(result);
     }
     print("the sum of the priorities of those item types : $sum");
   }
 
+  static int calculateScore(List<String> result) {
+    String comparLetter = result.toSet().first;
+    if (alphabetsUpperCase.contains(comparLetter)) {
+      return alphabetsUpperCase.indexOf(comparLetter) +
+          alphabetsUpperCase.length +
+          1;
+    } else {
+      return (alphabetsUpperCase.indexOf(comparLetter.toUpperCase()) + 1);
+    }
+  }
+
   static part2(List<String> rucksackReorganization) {
     print("Part 2:");
+    int sum = 0;
+    List<String> copy = List.from(rucksackReorganization);
+    for (var i = 0; i < rucksackReorganization.length / 3; i++) {
+      List<String> group = copy.sublist(0, 3);
+      List<String> splitId = group.last.split("");
+      for (String id in group.sublist(0, 2)) {
+        splitId.removeWhere((e) => !id.contains(e));
+      }
+      sum += calculateScore(splitId);
+      copy.removeRange(0, 3);
+    }
+    print("the sum of the priorities of those item types : $sum");
   }
 }
