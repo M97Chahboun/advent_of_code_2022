@@ -1,2 +1,3 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+# Advent of Code 2022
+
+## Daily programming puzzles at Advent of Code (https://adventofcode.com/).
