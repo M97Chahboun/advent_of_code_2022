@@ -16,15 +16,15 @@ class Day1 {
   }
 
   static void part1(List<int> sumCaloriesForEveryElf) {
+    print("Part 1:");
     int mostCalories = sumCaloriesForEveryElf
         .reduce((current, next) => current > next ? current : next);
     int elfHaveMostCalories = sumCaloriesForEveryElf.indexOf(mostCalories) + 1;
-    print(
-        "Part1:\nElf $elfHaveMostCalories have most Calories : $mostCalories");
+    print("Elf $elfHaveMostCalories have most Calories : $mostCalories");
   }
 
   static part2(List<int> sumCaloriesForEveryElf) {
-    print("Part2:");
+    print("Part 2:");
     int totalTopThreeElves = 0;
     for (var i = 0; i < 3; i++) {
       int mostCalories = sumCaloriesForEveryElf
