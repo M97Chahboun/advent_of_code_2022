@@ -9,6 +9,7 @@ class Day5 {
     List<String> steps = stacksAndSteps.last.split("\n");
     stacks.removeLast();
     part1(stacks, steps);
+    part2(stacks, steps);
   }
 
   static void part1(List<String> stacks, List<String> steps) {
@@ -75,5 +76,13 @@ class Day5 {
       }
     }
     return result;
+  }
+
+  static part2(List<String> stacks, List<String> steps) {
+    print("Part 2:");
+    Map<int, List<String>> cratesById =
+        rearrangement(stacks, steps, isCrateMover9000: false);
+    String result = prepareResult(cratesById);
+    print("The crate ends up on top of each stack with CrateMover9001 $result");
   }
 }
