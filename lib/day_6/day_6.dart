@@ -6,9 +6,11 @@ class Day6 {
     List<String> message =
         PrepareData.getData(path: "lib/day_6/day_6.txt", pattern: "");
     part1(message);
+    part2(message);
   }
 
   static int markerLen = 4;
+  static int messageLen = 14;
 
   static void part1(List<String> message) {
     print("Part 1:");
@@ -30,4 +32,11 @@ class Day6 {
 
   static bool markerChecker(List<String> messagePart, int key) =>
       messagePart.toSet().length == key;
+
+  static void part2(List<String> message) {
+    print("Part 2:");
+    int result = getMarkerIndex(message, messageLen);
+    print(
+        "The characters need to be processed before the first start-of-message marker is detected : $result");
+  }
 }
